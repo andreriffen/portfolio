@@ -1,0 +1,47 @@
+/* Principal */
+
+// MSIE: Necessário para IEMobile.
+@-ms-viewport {
+	width: device-width;
+  }
+  
+  // MSIE: Evita que a barra de rolagem sobreponha o conteúdo.
+  body {
+	-ms-overflow-style: scrollbar;
+  }
+  
+  // Garante que a largura da página seja sempre >=320px.
+  @include breakpoint("<=xsmall") {
+	html,
+	body {
+	  min-width: 320px;
+	}
+  }
+  
+  // Define o modelo da caixa como border-box.
+  // 			css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+  // Baseado em css-tricks.com/inheriting-box-sizing-provably-slightly-better-best-practice
+  html {
+	box-sizing: border-box;
+  }
+  
+  *,
+  *:before,
+  *:after {
+	box-sizing: inherit;
+  }
+  
+  body {
+	background-color: _palette(invert, bg);
+  
+	// Interrompe animação inicial até carregamento da pagina.
+	&.is-preload {
+	  *,
+	  *:before,
+	  *:after {
+		@include vendor("animation", "none !important");
+		@include vendor("transition", "none !important");
+	  }
+	}
+  }
+  
